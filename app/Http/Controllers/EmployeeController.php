@@ -11,24 +11,15 @@ class EmployeeController extends Controller
 {
     public function index(EmployeeSearchRequest $request)
     {
-        $query = Employee::query();
-
         $search = $request->input('search');
-        $sortBy = $request->input('sort_by', 'name');
+        $sortBy = $request->filled('sort_by') ? $request->input('sort_by') : 'name';
         $direction = $request->input('direction', 'asc');
 
-        if (!empty($search)) {
-            $query->where(function ($query) use ($search) {
-                $query->where('name', 'like', "%{$search}%")
-                    ->orWhere('email', 'like', "%{$search}%")
-                    ->orWhere('phone_number', 'like', "%{$search}%")
-                    ->orWhere('job_title', 'like', "%{$search}%");
-            });
-        }
-
-        $query->orderBy($sortBy, $direction);
-
-        $employees = $query->paginate(10);
+        $employees = Employee::query()
+            ->select('id', 'name', 'email', 'phone_number', 'job_title', 'salary')
+            ->search($search)
+            ->sortBy($sortBy, $direction)
+            ->paginate(10);
 
         return view('employees.index', compact('employees'));
     }
