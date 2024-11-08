@@ -1,3 +1,28 @@
+## Setting up the project locally
+***
+* Clone the project repository from GitHub to your local machine
+* Create environment file by copying .env.example to .env
+* Ensure Docker is installed on your system, then run the following command in the project's root directory:
+```
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php83-composer:latest \
+    composer install --ignore-platform-reqs
+```
+* Start the containers using `sail up -d`
+* Set the application key by running `sail artisan key:generate`
+* Install Javascript dependencies using `sail npm install`
+* Run the database migrations and seeders with `sail artisan migrate --seed`
+* Run the Vite development server with `sail npm run dev` if you're doing changes in Blade, Javascript or CSS/SCSS, or run `sail npm run build` to have the assets built and versioned for production
+
+*** 
+## Testing
+The test suite consists of 37 feature tests that verify the functionality implemented in Task 1 and Task 2.
+
+Run the test suite by executing `sail artisan test`
+***
 ## API Endpoints
 ***
 ### List Employees
