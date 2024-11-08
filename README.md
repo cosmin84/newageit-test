@@ -17,12 +17,11 @@ docker run --rm \
 * Run the database migrations and seeders with `sail artisan migrate --seed`
 * Run the Vite development server with `sail npm run dev` if you're doing changes in Blade, Javascript or CSS/SCSS, or run `sail npm run build` to have the assets built and versioned for production
 
-*** 
 ## Testing
 The test suite consists of 37 feature tests that verify the functionality implemented in Task 1 and Task 2.
 
 Run the test suite by executing `sail artisan test`
-***
+
 ## API Endpoints
 ***
 ### List Employees
@@ -183,3 +182,13 @@ Content-Type: application/json
 }
 ```
 **Status Code:** `422 Unprocessable Entity`
+
+
+## Performance Optimization Strategies
+***
+1. I would check the database settings to make sure they're set up well for handling lots of data. I might increase the buffer pool size, turn on query caching, and adjust the connection timeouts. 
+2. For searching, I'd use full-text indexing and create full-text indexes on fields like name, email, phone number, and job title because using "LIKE" with '%' is slow.
+3. I'd set up caching for query results so the database doesn't have to work as hard when the same request comes in; this means creating a cache key based on the full query.
+4. If things are still slow after these changes, I'd use the "EXPLAIN" command to find out what's causing delays.
+5. I'd also think about using cursor pagination. 
+6. Lastly, I might consider using a search engine like ElasticSearch.
