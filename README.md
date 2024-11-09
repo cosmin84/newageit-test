@@ -17,6 +17,12 @@ docker run --rm \
 * Run the database migrations and seeders with `sail artisan migrate --seed`
 * Run the Vite development server with `sail npm run dev` if you're doing changes in Blade, Javascript or CSS/SCSS, or run `sail npm run build` to have the assets built and versioned for production
 
+## Running the app
+*** 
+The Blade employee listing is available at http://localhost/employees
+
+The VueJS employee listing is available at https://localhost/employee-vuejs
+
 ## Testing
 The test suite consists of 37 feature tests that verify the functionality implemented in Task 1 and Task 2.
 
