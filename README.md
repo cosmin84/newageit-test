@@ -21,7 +21,7 @@ docker run --rm \
 *** 
 The Blade employee listing is available at http://localhost/employees
 
-The VueJS employee listing is available at https://localhost/employee-vuejs
+The VueJS employee listing is available at https://localhost/employees-vuejs
 
 ## Testing
 The test suite consists of 37 feature tests that verify the functionality implemented in Task 1 and Task 2.
